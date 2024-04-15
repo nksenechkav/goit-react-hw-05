@@ -2,7 +2,7 @@
   margin: 0 auto;
 }
 
-.movies-container {
+header {
   max-width: 1440px;
   display: flex;
   flex-direction: column;

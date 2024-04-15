@@ -4,7 +4,7 @@ const url = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US';
 
 const options = {
   headers: {
-    Authorization: 'Bearer 96d827470392073a234d65ea8b7d9e73'
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NmQ4Mjc0NzAzOTIwNzNhMjM0ZDY1ZWE4YjdkOWU3MyIsInN1YiI6IjY2MWNkZjhjNGNhNjc2MDE0YjFiY2VmZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.1iC98ci0RVFvlNzZjlQKfvqUqtWIjBl1FGsom592R8k'
   }
 };
 

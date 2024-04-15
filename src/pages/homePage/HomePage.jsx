@@ -1,11 +1,11 @@
-import MovieList from "../../components/moviesList/MoviesList";
+import MoviesList from "../../components/moviesList/MoviesList";
 
 const HomePage = () => {
     return (
         
-             <div>
-              <MovieList/>
-             </div>
+             <>
+              <MoviesList/>
+             </>
     
 
     );

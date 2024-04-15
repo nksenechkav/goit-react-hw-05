@@ -1,5 +1,7 @@
+import css from './MoviesList.module.scss';
 import { useState, useEffect } from 'react';
 import { fetchMoviesWithQuery } from '../api/movies-api';
+import { NavLink } from 'react-router-dom';
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
@@ -9,7 +11,6 @@ const MovieList = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        // Отримання списку фільмів
         const data = await fetchMoviesWithQuery();
         if (data) {
           setMovies(data.results);
@@ -26,8 +27,7 @@ const MovieList = () => {
 
     fetchMovies();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Порожній масив для запуску ефекту лише один раз при монтуванні компонента
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -38,13 +38,12 @@ const MovieList = () => {
   }
 
   return (
-    <div>
+    <div className={css['movies-container']}>
       <h2>Trending today</h2>
-      <ul>
+      <ul className={css['movies-list']}>
         {movies.map(movie => (
           <li key={movie.id}>
-            <h3>{movie.title}</h3>
-            <p>{movie.overview}</p>
+            <NavLink to = {`${movie.id}`}>{movie.title}</NavLink>
           </li>
         ))}
       </ul>
