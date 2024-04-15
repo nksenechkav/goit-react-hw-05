@@ -8,12 +8,14 @@ const MovieList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         const data = await fetchMoviesWithQuery();
         if (data) {
           setMovies(data.results);
+          console.log(data.results);
           setLoading(false);
         } else {
           setError('Failed to fetch movies');
@@ -43,7 +45,7 @@ const MovieList = () => {
       <ul className={css['movies-list']}>
         {movies.map(movie => (
           <li key={movie.id}>
-            <NavLink to = {`${movie.id}`}>{movie.title}</NavLink>
+            <NavLink to = {`/movies/${movie.id}`}>{movie.title}</NavLink>
           </li>
         ))}
       </ul>
