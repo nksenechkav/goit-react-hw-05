@@ -13,16 +13,16 @@ const MovieDetailsPage = () => {
       console.log(res);
 			setMovie(res);
 		};
-		load();
+		load(movieId);
 	}, [movieId]);
 
 
   return (
     <main>
        <div className={css['details-container']}>
-        <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title}/>
+        <img src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} alt={movie.original_title} width={300}/>
         <>
-        <h2>{movie.title} - {movie.id}</h2>
+        <h2>{movie.original_title} - {movie.id}</h2>
         <p>{movie.overview}</p>
         </>
       </div>
