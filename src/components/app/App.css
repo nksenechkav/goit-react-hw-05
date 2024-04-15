@@ -1,0 +1,11 @@
+#root {
+  margin: 0 auto;
+}
+
+.movies-container {
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: baseline;
+}

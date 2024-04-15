@@ -1,8 +1,11 @@
+import MovieList from "../../components/moviesList/MoviesList";
+
 const HomePage = () => {
-    
     return (
         
-             <div>Home Page</div>
+             <div>
+              <MovieList/>
+             </div>
     
 
     );
