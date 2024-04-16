@@ -1,13 +1,16 @@
 import css from './MoviesList.module.scss';
 import { useState, useEffect } from 'react';
 import { fetchMoviesWithQuery } from '../api/movies-api';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import LoaderComponent from '../loader/Loader';
+import ErrorMessage from '../error/ErrorMessage';
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const location = useLocation();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -15,7 +18,7 @@ const MovieList = () => {
         const data = await fetchMoviesWithQuery();
         if (data) {
           setMovies(data.results);
-          console.log(data.results);
+          
           setLoading(false);
         } else {
           setError('Failed to fetch movies');
@@ -32,11 +35,13 @@ const MovieList = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <>{loading && <LoaderComponent />}
+    </>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <>{error && <ErrorMessage />}
+    </>;
   }
 
   return (
@@ -45,7 +50,7 @@ const MovieList = () => {
       <ul className={css['movies-list']}>
         {movies.map(movie => (
           <li key={movie.id}>
-            <NavLink to = {`/movies/${movie.id}`}>{movie.title}</NavLink>
+            <NavLink to = {`/movies/${movie.id}`} state={location}> {movie.title} </NavLink>
           </li>
         ))}
       </ul>

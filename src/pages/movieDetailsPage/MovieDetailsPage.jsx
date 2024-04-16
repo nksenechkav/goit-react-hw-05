@@ -1,37 +1,88 @@
 import css from './MovieDetailsPage.module.scss';
-import { useParams} from 'react-router-dom';
+import { useParams, useLocation} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchMoviesById } from '../../components/api/movies-api';
+import LoaderComponent from '../../components/loader/Loader';
+import ErrorMessage from '../../components/error/ErrorMessage';
+import { BackLink } from '../../components/backLink/BackLink';
+
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const location = useLocation();
+  const backLinkHref = location.state ?? '/';
+
 
   useEffect(() => {
     if (!movieId) return;
 		const load = async () => {
-			const movieData = await fetchMoviesById(movieId);
-      console.log(movieData);
-			setMovie(movieData);
-		};
+      try {
+        const movieData = await fetchMoviesById(movieId);
+        console.log(movieData)
+        if (movieData) {
+          setMovie(movieData);
+          setLoading(false);
+        } else {
+          setError('Failed to fetch movies');
+          setLoading(false);
+        }
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
 		load();
 	}, [movieId]);
 
+
+  if (loading) {
+    return <>{loading && <LoaderComponent />}
+    </>;
+  }
+
+  if (error) {
+    return <>{error && <ErrorMessage />}
+    </>;
+  }
+
   const defaultImg = '<https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg>'
 
+  const dateString = movie.release_date; 
+  const dateObj = new Date(dateString);
+  const year = dateObj.getFullYear(); 
+
+  const userScore = Math.round(movie.vote_average * 10);
+  
+  const genres = movie.genres ? movie.genres.map(genre => genre.name) : [];
+  
   return (
     <main>
-      <div className={css['details-container']}>
+      <BackLink to={backLinkHref}>Back Home</BackLink>
+      <div className={css['movie-container']}>
         <img 
           src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : defaultImg}
           width={250} 
           alt="poster" 
         />
-        <>
-          <h2>{movie.original_title} - {movie.id}</h2>
+        <div className={css['movie-details']}>
+          <h2>{movie.original_title} ({year})</h2>
+          <p>User score: {userScore}%</p>
+          <h4>Overview</h4>
           <p>{movie.overview}</p>
-        </>
+          <h5>Genres</h5>
+          <p>{genres.join(', ')}</p>
+        </div>
       </div>
+       <div className={css['additionals']}>
+          <h4>Additional information</h4>
+            <ul>
+              <li>Cast</li>
+              <li>Review</li>
+            </ul>
+        </div>
     </main>
   );
 }
