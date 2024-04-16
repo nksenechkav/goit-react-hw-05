@@ -4,7 +4,7 @@ import HomePage from '../../pages/homePage/HomePage'
 import NotFoundPage from '../../pages/notFoundPage/NotFoundPage'
 import Navigation  from '../navigation/Navigation'
 import MovieDetailsPage from '../../pages/movieDetailsPage/MovieDetailsPage'
-import MoviePage from '../../pages/moviePage/MoviePage'
+import MoviesPage from '../../pages/moviesPage/MoviesPage'
 import MovieCast  from '../movieCast/MovieCast'
 import MovieReviews  from '../movieReviews/MovieReviews'
 
@@ -14,7 +14,7 @@ function App() {
             <Navigation/>
         <Routes>
             <Route path = "/" element = {<HomePage/>}/>
-            <Route path = "/movies" element = {<MoviePage/>}/>
+            <Route path = "/movies" element = {<MoviesPage/>}/>
                  <Route path = "/movies/:movieId" element = {<MovieDetailsPage/>}>
                     <Route path = "cast" element = {<MovieCast/>}/>
                     <Route path = "reviews" element = {<MovieReviews/>}/>

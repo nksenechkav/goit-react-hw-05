@@ -9,11 +9,11 @@ const options = {
 };
 
 export const fetchMoviesWithQuery = async () => {
-  const response = await axios.get(`${url}/trending/movie/day?language=en-US`, options);
+  const response = await axios.get(`${url}/trending/movie/day`, options);
   return response.data;
 };
 
 export const fetchMoviesById = async (id) => {
-    const response = await axios.get(`${url}/movie/movie_${id}?language=en-US`, options);
+    const response = await axios.get(`${url}/movie/${id}`, options);
     return response.data;
 };
