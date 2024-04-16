@@ -1,3 +1,11 @@
+header {
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
 .nav {
     width: 1440px;
     display: flex;
@@ -22,4 +30,4 @@
       .active {
         color: red;
       }
-      
+

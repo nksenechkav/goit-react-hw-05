@@ -2,10 +2,3 @@
   margin: 0 auto;
 }
 
-header {
-  max-width: 1440px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: baseline;
-}

@@ -70,9 +70,9 @@ const MovieDetailsPage = () => {
         <div className={css['movie-details']}>
           <h2>{movie.original_title} ({year})</h2>
           <p>User score: {userScore}%</p>
-          <h4>Overview</h4>
+          <h3>Overview</h3>
           <p>{movie.overview}</p>
-          <h5>Genres</h5>
+          <h4>Genres</h4>
           <p>{genres.join(', ')}</p>
         </div>
       </div>
