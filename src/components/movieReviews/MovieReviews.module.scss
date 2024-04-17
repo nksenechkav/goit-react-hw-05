@@ -1,20 +1,19 @@
-.cast-list {
+.reviews-list {
     display: flex;
     flex-direction: column;
     gap: 30px;
     padding-left: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     list-style: disc;
 
     li {
        border-bottom: 2px solid grey;
+       padding-bottom: 20px;
     }
 
-    img {
-        width: 150px;
+    h3 {
+        padding-bottom: 20px;
      }
-     
-     span {
-        font-size: large;
-        color: red;
-     }
+
  }

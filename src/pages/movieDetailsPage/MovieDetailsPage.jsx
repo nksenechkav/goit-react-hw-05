@@ -6,8 +6,7 @@ import { useEffect, useState } from 'react';
 import { fetchMoviesById } from '../../components/api/movies-api';
 import LoaderComponent from '../../components/loader/Loader';
 import ErrorMessage from '../../components/error/ErrorMessage';
-import { Link, Outlet } from 'react-router-dom';
-import MovieCast from '../../components/movieCast/MovieCast';
+import { Outlet } from 'react-router-dom';
 
 
 const MovieDetailsPage = () => {
@@ -39,6 +38,7 @@ const MovieDetailsPage = () => {
         setLoading(false);
       }
     };
+
 		fetchDetails();
 	}, [movieId]);
 
@@ -64,7 +64,7 @@ const MovieDetailsPage = () => {
   const genres = movie.genres ? movie.genres.map(genre => genre.name) : [];
 
   return (
-    <main>
+   <main>
       <NavLink to={goBackLink.current}>
         <button className={css.btn}> Go back</button>
       </NavLink>
@@ -83,17 +83,21 @@ const MovieDetailsPage = () => {
           <p>{genres.join(', ')}</p>
         </div>
       </div>
+      
        <div className={css['additionals']}>
           <h4>Additional information</h4>
             <ul>
-              <Link to="cast"><li>Cast</li></Link>
-              <Link to="reviews"><li>Reviews</li></Link>
+                  <li>
+                  <NavLink to={`/movies/${movieId}/cast`}>Cast</NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
+                </li>
             </ul>
-            <Outlet />
         </div>
-        <MovieCast movieId={movieId} />
-    </main>
+        <Outlet/>
+      </main>
   );
-}
-
-  export default MovieDetailsPage;
+};
+  
+ export default MovieDetailsPage;

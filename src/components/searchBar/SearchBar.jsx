@@ -29,7 +29,8 @@ const SearchBar = ({ onSearch }) => {
       />
       <button className={css.btn} type="submit">Search</button>
       <Toaster />
-    </form></>
+    </form>
+    </>
     
   );
 };

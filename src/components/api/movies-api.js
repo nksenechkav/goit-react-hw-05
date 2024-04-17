@@ -9,21 +9,26 @@ const options = {
 };
 
 export const fetchMoviesTrend = async () => {
-  const response = await axios.get(`${url}/trending/movie/day`, options);
+  const response = await axios.get(`${url}/trending/movie/day?language=en-US`, options);
   return response.data;
 };
 
 export const fetchMoviesById = async (id) => {
-    const response = await axios.get(`${url}/movie/${id}`, options);
+    const response = await axios.get(`${url}/movie/${id}?language=en-US`, options);
     return response.data;
 };
 
 export const fetchMoviesWithQuery = async (query) => {
-  const response = await axios.get(`${url}/search/movie?query=${query}`, options);
+  const response = await axios.get(`${url}/search/movie?query=${query}&language=en-US&page=1`, options);
   return response.data;
 };
 
-export const fetchMoviesCastById = async (id) => {
-  const response = await axios.get(`${url}/movie/${id}/credits?`, options);
+export const fetchMovieCastById = async (id) => {
+  const response = await axios.get(`${url}/movie/${id}/credits?language=en-US`, options);
+  return response.data;
+};
+
+export const fetchMovieReviewsById = async (id) => {
+  const response = await axios.get(`${url}/movie/${id}/reviews?language=en-US`, options);
   return response.data;
 };

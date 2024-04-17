@@ -1,25 +1,24 @@
 import css from './MovieCast.module.scss';
 import { useEffect, useState } from 'react';
-import { fetchMoviesCastById } from '../api/movies-api';
+import { useParams } from 'react-router-dom';
+import { fetchMovieCastById } from '../api/movies-api';
 import LoaderComponent from '../loader/Loader';
 import ErrorMessage from '../error/ErrorMessage';
 
-const MovieCast = ({ movieId }) => {
-  const [movie, setMovie] = useState({});
+const MovieCast = () => {
+  const [movieCast, setMovieCast] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  console.log(movieId)
+  const { movieId } = useParams();
 
   useEffect(() => {
     if (!movieId) return;
 
 		const fetchDetailsCast = async () => {
       try {
-        const movieData = await fetchMoviesCastById(movieId);
-        console.log(movieData)
-        if (movieData) {
-          setMovie(movieData);
+        const castData = await fetchMovieCastById(movieId);
+        if (castData) {
+          setMovieCast(castData);
           setLoading(false);
         } else {
           setError('Failed to fetch movies');
@@ -47,27 +46,25 @@ const MovieCast = ({ movieId }) => {
   const defaultImg = '<https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg>'
 
     return (
-    <section className={css['cast-details']}>
+      movieCast &&
+      movieCast.cast && (
       <ul className={css['cast-list']}>
-        {movie.cast.map((castMember) => (
+        {movieCast.cast.map((castMember) => (
           <li key={castMember.id}>
             <img
               src={castMember.profile_path ? `https://image.tmdb.org/t/p/w500/${castMember.profile_path}` : defaultImg}
-              width={250}
-              alt="poster"
+              alt="photo of actor"
             />
             <div className={css['cast-description']}>
-              <h4>{castMember.name}</h4>
-              <p>{castMember.character}</p>
+              <h3>{castMember.name}</h3>
+              <p>Character: <span>{castMember.character}</span></p>
             </div>
           </li>
         ))}
-      </ul>
-        
-    </section>
+      </ul>  
+    )
+  )
 
-    );
-    
-  }
+}
   
   export default MovieCast;
