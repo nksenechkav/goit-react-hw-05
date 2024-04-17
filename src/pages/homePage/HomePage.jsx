@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { fetchMoviesTrend } from '../../components/api/movies-api';
 import LoaderComponent from '../../components/loader/Loader';
 import ErrorMessage from '../../components/error/ErrorMessage';
-import MoviesList from "../../components/moviesList/MoviesList";
+import MovieList from "../../components/movieList/MovieList";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -46,7 +46,7 @@ const HomePage = () => {
     return (
       <div className={css['movies-container']}>
       <h2>Trending today</h2>
-              {movies.length > 0 && <MoviesList movies={movies}/>}
+              {movies.length > 0 && <MovieList movies={movies}/>}
       </div>
     );
     

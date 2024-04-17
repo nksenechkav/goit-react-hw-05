@@ -43,7 +43,6 @@ const MovieCast = () => {
     return <>{error && <ErrorMessage />}
     </>;
   }
-  const defaultImg = '<https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg>'
 
     return (
       movieCast &&
@@ -52,7 +51,7 @@ const MovieCast = () => {
         {movieCast.cast.map((castMember) => (
           <li key={castMember.id}>
             <img
-              src={castMember.profile_path ? `https://image.tmdb.org/t/p/w500/${castMember.profile_path}` : defaultImg}
+              src={`https://image.tmdb.org/t/p/w500/${castMember.profile_path}`}
               alt="photo of actor"
             />
             <div className={css['cast-description']}>

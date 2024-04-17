@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import LoaderComponent from '../../components/loader/Loader';
 import ErrorMessage from '../../components/error/ErrorMessage';
 import { fetchMoviesWithQuery } from '../../components/api/movies-api';
-import MoviesList from '../../components/moviesList/MoviesList';
+import MovieList from '../../components/movieList/MovieList';
 
 
 const MoviesPage = () => {
@@ -54,7 +54,7 @@ const MoviesPage = () => {
      <SearchBar onSearch={onSubmit}/>
      {loading && <LoaderComponent />}
      {error && <ErrorMessage />}
-     {movies.length > 0 && <MoviesList movies={movies} movieParams={params}/>}
+     {movies.length > 0 && <MovieList movies={movies} movieParams={params}/>}
     </div>
     );
     
