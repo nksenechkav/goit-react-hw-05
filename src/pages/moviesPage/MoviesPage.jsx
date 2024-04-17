@@ -34,7 +34,6 @@ const MoviesPage = () => {
       setError(false);
       setLoading(true);
       const data = await fetchMoviesWithQuery(query);
-      console.log(data);
       if (data.results.length === 0) {
         return;
       }

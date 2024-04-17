@@ -1,0 +1,11 @@
+.cast-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-left: 20px;
+    list-style: none;
+
+    li {
+       border-bottom: 2px solid grey;
+    }
+ }

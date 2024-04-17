@@ -22,3 +22,8 @@ export const fetchMoviesWithQuery = async (query) => {
   const response = await axios.get(`${url}/search/movie?query=${query}`, options);
   return response.data;
 };
+
+export const fetchMoviesCastById = async (id) => {
+  const response = await axios.get(`${url}/movie/${id}/credits?`, options);
+  return response.data;
+};

@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
 import { fetchMoviesById } from '../../components/api/movies-api';
 import LoaderComponent from '../../components/loader/Loader';
 import ErrorMessage from '../../components/error/ErrorMessage';
-// import { BackLink } from '../../components/backLink/BackLink';
+import { Link, Outlet } from 'react-router-dom';
+import MovieCast from '../../components/movieCast/MovieCast';
 
 
 const MovieDetailsPage = () => {
@@ -25,7 +26,6 @@ const MovieDetailsPage = () => {
 		const fetchDetails = async () => {
       try {
         const movieData = await fetchMoviesById(movieId);
-        console.log(movieData)
         if (movieData) {
           setMovie(movieData);
           setLoading(false);
@@ -35,6 +35,7 @@ const MovieDetailsPage = () => {
         }
       } catch (error) {
         setError(error.message);
+      } finally {
         setLoading(false);
       }
     };
@@ -85,10 +86,12 @@ const MovieDetailsPage = () => {
        <div className={css['additionals']}>
           <h4>Additional information</h4>
             <ul>
-              <li>Cast</li>
-              <li>Review</li>
+              <Link to="cast"><li>Cast</li></Link>
+              <Link to="reviews"><li>Reviews</li></Link>
             </ul>
+            <Outlet />
         </div>
+        <MovieCast movieId={movieId} />
     </main>
   );
 }
