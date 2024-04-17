@@ -1,13 +1,12 @@
 .movie-container {
-  max-width: 1440px;
-  margin: 0 auto;
   display: flex;
   flex-direction: row;
   gap: 15px;
-  padding: 10px;
 }
 
 img {
+    padding-bottom: 10px;
+    padding-top: 10px;
     display: block;
     width: 250px;
     height: auto;
@@ -39,7 +38,7 @@ img {
 }
 
 .btn {
-    margin-left: 30px;
+    margin-top: 10px;
     display: inline-block;
     padding: 5px 5px;
     font-size: 14px;

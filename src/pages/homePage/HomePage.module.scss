@@ -1,8 +1,10 @@
 .movies-container {
-    max-width: 1440px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 0 auto;
+    
+        h2 {
+           margin-top: 10px; 
+        }
 }
 
