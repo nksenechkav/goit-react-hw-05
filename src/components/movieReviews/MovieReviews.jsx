@@ -47,19 +47,20 @@ const MovieReviews = () => {
     </>;
   }
   
-    return (
-      movieReviews &&
-      movieReviews.results && (
-        <ul className={css['reviews-list']}>
-          {movieReviews.results.map((review) => (
-            <li key={review.id}>
-              <h3>Author: {review.author}</h3>
-              <p>{review.content}</p>
-            </li>
-          ))}
-        </ul>
-      )
-    );
-  };
+  return (
+    movieReviews && movieReviews.results && movieReviews.results.length > 0 ? (
+      <ul className={css['reviews-list']}>
+        {movieReviews.results.map((review) => (
+          <li key={review.id}>
+            <h3>Author: {review.author}</h3>
+            <p>{review.content}</p>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p className={css['no-reviews']}>We don't have any reviews for this movie!</p>
+    )
+  );
+};
   
   export default MovieReviews;

@@ -100,4 +100,4 @@ const MovieDetailsPage = () => {
   );
 };
   
- export default MovieDetailsPage;
+export default MovieDetailsPage;
