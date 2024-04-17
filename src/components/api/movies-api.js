@@ -8,7 +8,7 @@ const options = {
   }
 };
 
-export const fetchMoviesWithQuery = async () => {
+export const fetchMoviesTrend = async () => {
   const response = await axios.get(`${url}/trending/movie/day`, options);
   return response.data;
 };
@@ -16,4 +16,9 @@ export const fetchMoviesWithQuery = async () => {
 export const fetchMoviesById = async (id) => {
     const response = await axios.get(`${url}/movie/${id}`, options);
     return response.data;
+};
+
+export const fetchMoviesWithQuery = async (query) => {
+  const response = await axios.get(`${url}/search/movie?query=${query}`, options);
+  return response.data;
 };

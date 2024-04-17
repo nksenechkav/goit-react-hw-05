@@ -1,19 +1,22 @@
-.notFoundPage-container {
-    max-width: 1440px;
+.form {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 0 auto;
+    flex-direction: row;
+    gap: 5px;
+    padding: 5px 5px;
 
-    h2 {
-        font-size: 72px;
-        color: navy;
-        text-align: center;
-    }
 }
 
+.input {
+    display: inline-block;
+    padding: 5px 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    border-radius: 3px;
+    cursor: pointer;
+  }
 
 .btn {
     display: inline-block;
@@ -21,7 +24,7 @@
     font-size: 14px;
     font-weight: bold;
     text-decoration: none;
-    color: #fff;
+    color:white;
     background-color: red;
     border: none;
     border-radius: 3px;

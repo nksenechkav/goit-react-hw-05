@@ -1,10 +1,12 @@
 import css from './MovieDetailsPage.module.scss';
-import { useParams, useLocation} from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
+import { useRef } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchMoviesById } from '../../components/api/movies-api';
 import LoaderComponent from '../../components/loader/Loader';
 import ErrorMessage from '../../components/error/ErrorMessage';
-import { BackLink } from '../../components/backLink/BackLink';
+// import { BackLink } from '../../components/backLink/BackLink';
 
 
 const MovieDetailsPage = () => {
@@ -12,13 +14,15 @@ const MovieDetailsPage = () => {
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const location = useLocation();
-  const backLinkHref = location.state ?? '/';
+  const goBackLink = useRef(location.state?.from || "/");
 
 
   useEffect(() => {
     if (!movieId) return;
-		const load = async () => {
+
+		const fetchDetails = async () => {
       try {
         const movieData = await fetchMoviesById(movieId);
         console.log(movieData)
@@ -34,7 +38,7 @@ const MovieDetailsPage = () => {
         setLoading(false);
       }
     };
-		load();
+		fetchDetails();
 	}, [movieId]);
 
 
@@ -57,10 +61,12 @@ const MovieDetailsPage = () => {
   const userScore = Math.round(movie.vote_average * 10);
   
   const genres = movie.genres ? movie.genres.map(genre => genre.name) : [];
-  
+
   return (
     <main>
-      <BackLink to={backLinkHref}>Back Home</BackLink>
+      <NavLink to={goBackLink.current}>
+        <button className={css.btn}> Go back</button>
+      </NavLink>
       <div className={css['movie-container']}>
         <img 
           src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : defaultImg}

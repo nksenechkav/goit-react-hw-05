@@ -37,3 +37,26 @@ img {
         list-style: disc;
      }
 }
+
+.btn {
+    margin-left: 30px;
+    display: inline-block;
+    padding: 5px 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    background-color: red;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: rosybrown;
+  }
+  
+  .btn:focus {
+    outline: none;
+  }
